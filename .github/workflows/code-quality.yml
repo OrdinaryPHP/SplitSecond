@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Quality Tests
         id: quality
-        uses: actions/hello-world-docker-action@dev
+        uses: OrdinaryPHP/code-quality@dev
