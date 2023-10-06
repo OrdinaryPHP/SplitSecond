@@ -1,0 +1,15 @@
+name: "Ordinary PHP Code Quality"
+on:
+  push:
+    branches:
+      - dev
+    tags:
+      - '**'
+jobs:
+  code_quality:
+    runs-on: ubuntu-latest
+    name: Test code quality
+    steps:
+      - name: Quality Tests
+        id: quality
+        uses: actions/hello-world-docker-action@dev

@@ -1,0 +1,21 @@
+{
+  "name": "ordinary/split-second",
+  "description": "Library for handling split second units",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Brandon Jackson",
+      "email": "brandonja991@gmail.com"
+    }
+  ],
+  "autoload": {
+    "Ordinary\\SplitSecond\\": "src"
+  },
+  "autoload-dev": {
+    "Ordinary\\SplitSecond\\": "tests/unit"
+  },
+  "require": {
+    "php": "^8.2"
+  }
+}
