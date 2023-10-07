@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Test code quality
     steps:
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
       - name: Quality Tests
         id: quality
         uses: OrdinaryPHP/code-quality@dev
