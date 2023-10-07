@@ -5,6 +5,8 @@ on:
       - dev
     tags:
       - '**'
+permissions:
+  packages: read
 jobs:
   code_quality:
     runs-on: ubuntu-latest
