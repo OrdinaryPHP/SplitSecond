@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ordinary\SplitSecond;
 
-class UnexpectedValueException extends \UnexpectedValueException implements SplitSecondException
+use UnexpectedValueException as PhpUnexpectedValueException;
+
+class UnexpectedValueException extends PhpUnexpectedValueException implements SplitSecondException
 {
 }
