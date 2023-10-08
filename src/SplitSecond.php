@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ordinary\SplitSecond;
+
+use DateTimeImmutable;
+use DateTimeInterface;
 
 class SplitSecond
 {
-    private function __construct(public readonly SplitSecondUnit $unit, public readonly int $splitSeconds)
-    {
-    }
-
     public static function Create(SplitSecondUnit $unit, int $splitSeconds): self
     {
         assert($splitSeconds < $unit->perSecond(), new UnexpectedValueException("Split seconds ($splitSeconds) is more than {$unit->name} will allow"));
@@ -30,14 +31,19 @@ class SplitSecond
         return self::Create(SplitSecondUnit::Nanosecond, $nanoseconds);
     }
 
-    public static function extractFromDateTime(\DateTimeInterface $dateTime): self
+    public static function extractFromDateTime(DateTimeInterface $dateTime): self
     {
         return self::Microseconds((int) $dateTime->format('u'));
     }
 
-    public function applyToDateTime(\DateTimeInterface $dateTime): \DateTimeImmutable
+    private function __construct(public readonly SplitSecondUnit $unit, public readonly int $splitSeconds)
     {
-        $result = \DateTimeImmutable::createFromInterface($dateTime);
+    }
+
+    public function applyToDateTime(DateTimeInterface $dateTime): DateTimeImmutable
+    {
+        $result = DateTimeImmutable::createFromInterface($dateTime);
+
         return $result->setTime((int) $result->format('H'), (int) $result->format('i'), (int) $result->format('s'), self::toMicroseconds()->splitSeconds);
     }
 
