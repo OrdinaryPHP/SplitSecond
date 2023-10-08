@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Test code quality
     steps:
+      - name: Checkout code
+        uses: actions/checkout@main
       - name: Quality Tests
         id: quality
         uses: OrdinaryPHP/code-quality@dev
