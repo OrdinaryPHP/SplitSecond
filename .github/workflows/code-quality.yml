@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Composer Install
+        run: composer install --no-interaction
       - name: Static Analysis
         run: psalm
   code-style:
