@@ -51,7 +51,7 @@ class SplitSecond
             (int) $result->format('H'),
             (int) $result->format('i'),
             (int) $result->format('s'),
-            self::toMicroseconds()->splitSeconds,
+            $this->toMicroseconds()->splitSeconds,
         );
     }
 
