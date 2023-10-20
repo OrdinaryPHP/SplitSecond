@@ -20,7 +20,6 @@ jobs:
       - name: Lint
         run: phplint
   static-analysis:
-    needs: [ build-push ]
     strategy:
       matrix:
         php-version: [ "8.2" ]
@@ -32,7 +31,6 @@ jobs:
       - name: Static Analysis
         run: psalm
   code-style:
-    needs: [ build-push ]
     strategy:
       matrix:
         php-version: [ "8.2" ]
