@@ -8,12 +8,38 @@ on:
 permissions:
   packages: read
 jobs:
-  code_quality:
+  lint:
+    strategy:
+      matrix:
+        php-version: [ "8.2" ]
     runs-on: ubuntu-latest
-    name: Test code quality
+    container: ghcr.io/ordinaryphp/code-quality:dev-php${{matrix.php-version}}
     steps:
       - name: Checkout code
-        uses: actions/checkout@main
-      - name: Quality Tests
-        id: quality
-        uses: OrdinaryPHP/code-quality@dev
+        uses: actions/checkout@v4
+      - name: Lint
+        run: phplint
+  static-analysis:
+    needs: [ build-push ]
+    strategy:
+      matrix:
+        php-version: [ "8.2" ]
+    runs-on: ubuntu-latest
+    container: ghcr.io/ordinaryphp/code-quality:dev-php${{matrix.php-version}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Static Analysis
+        run: psalm
+  code-style:
+    needs: [ build-push ]
+    strategy:
+      matrix:
+        php-version: [ "8.2" ]
+    runs-on: ubuntu-latest
+    container: ghcr.io/ordinaryphp/code-quality:dev-php${{matrix.php-version}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Code Style
+        run: phpcs
