@@ -9,10 +9,14 @@
     }
   ],
   "autoload": {
-    "Ordinary\\SplitSecond\\": "src/"
+    "psr-4": {
+      "Ordinary\\SplitSecond\\": "src/"
+    }
   },
   "autoload-dev": {
-    "Ordinary\\SplitSecond\\": "tests/"
+    "psr-4": {
+      "Ordinary\\SplitSecond\\": "tests/"
+    }
   },
   "require": {
     "php": "^8.2"
