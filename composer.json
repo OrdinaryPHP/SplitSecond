@@ -1,7 +1,6 @@
 {
   "name": "ordinary/split-second",
   "description": "Library for handling split second units",
-  "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
     {
@@ -10,12 +9,21 @@
     }
   ],
   "autoload": {
-    "Ordinary\\SplitSecond\\": "src"
+    "Ordinary\\SplitSecond\\": "src/"
   },
   "autoload-dev": {
-    "Ordinary\\SplitSecond\\": "tests/unit"
+    "Ordinary\\SplitSecond\\": "tests/"
   },
   "require": {
     "php": "^8.2"
+  },
+  "require-dev": {
+    "ordinary/code-quality": "dev-dev",
+    "roave/security-advisories": "@dev"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
