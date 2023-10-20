@@ -20,7 +20,6 @@
     <source>
         <include>
             <directory>src</directory>
-            <directory>bin</directory>
         </include>
     </source>
 </phpunit>
