@@ -45,13 +45,19 @@ class SplitSecond
 
     public function applyToDateTime(DateTimeInterface $dateTime): DateTimeImmutable
     {
+        $microseconds = $this->toMicroseconds()->splitSeconds;
+
+        if ($microseconds === (int) $dateTime->format('u')) {
+            return $dateTime instanceof DateTimeImmutable ? $dateTime : DateTimeImmutable::createFromInterface($dateTime);
+        }
+
         $result = DateTimeImmutable::createFromInterface($dateTime);
 
         return $result->setTime(
             (int) $result->format('H'),
             (int) $result->format('i'),
             (int) $result->format('s'),
-            $this->toMicroseconds()->splitSeconds,
+            $microseconds,
         );
     }
 
@@ -59,25 +65,25 @@ class SplitSecond
     {
         return match ($this->unit) {
             SplitSecondUnit::Millisecond => $this,
-            SplitSecondUnit::Microsecond => self::microseconds($this->splitSeconds * 1_000),
-            SplitSecondUnit::Nanosecond => self::nanoseconds($this->splitSeconds * 1_000_000),
+            SplitSecondUnit::Microsecond => self::milliseconds(intdiv($this->splitSeconds, 1_000)),
+            SplitSecondUnit::Nanosecond => self::milliseconds(intdiv($this->splitSeconds, 1_000_000)),
         };
     }
 
     public function toMicroseconds(): self
     {
         return match ($this->unit) {
-            SplitSecondUnit::Millisecond => self::milliseconds((int) ($this->splitSeconds / 1_000)),
+            SplitSecondUnit::Millisecond => self::microseconds($this->splitSeconds * 1_000),
             SplitSecondUnit::Microsecond => $this,
-            SplitSecondUnit::Nanosecond => self::nanoseconds($this->splitSeconds * 1_000),
+            SplitSecondUnit::Nanosecond => self::microseconds(intdiv($this->splitSeconds, 1_000)),
         };
     }
 
     public function toNanoseconds(): self
     {
         return match ($this->unit) {
-            SplitSecondUnit::Millisecond => self::milliseconds((int) ($this->splitSeconds / 1_000_000)),
-            SplitSecondUnit::Microsecond => self::microseconds((int) ($this->splitSeconds / 1_000)),
+            SplitSecondUnit::Millisecond => self::nanoseconds($this->splitSeconds * 1_000_000),
+            SplitSecondUnit::Microsecond => self::nanoseconds($this->splitSeconds * 1_000),
             SplitSecondUnit::Nanosecond => $this,
         };
     }
