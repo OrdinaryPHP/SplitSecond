@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ordinary\SplitSecond;
 
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 class SplitSecondUnitTest extends TestCase
 {
-    public static function splitSecondEnumProvider(): \Generator
+    public static function splitSecondEnumProvider(): Generator
     {
         foreach (SplitSecondUnit::cases() as $case) {
             yield [$case];
@@ -14,7 +17,7 @@ class SplitSecondUnitTest extends TestCase
     }
 
     /** @dataProvider splitSecondEnumProvider */
-    public function testPerSecond(SplitSecondUnit $case)
+    public function testPerSecond(SplitSecondUnit $case): void
     {
         $expected = match ($case) {
             SplitSecondUnit::Millisecond => 1_000,
@@ -26,7 +29,7 @@ class SplitSecondUnitTest extends TestCase
     }
 
     /** @dataProvider splitSecondEnumProvider */
-    public function testMaxInSecond(SplitSecondUnit $case)
+    public function testMaxInSecond(SplitSecondUnit $case): void
     {
         $expected = match ($case) {
             SplitSecondUnit::Millisecond => 999,
@@ -38,7 +41,7 @@ class SplitSecondUnitTest extends TestCase
     }
 
     /** @dataProvider splitSecondEnumProvider */
-    public function testAbbr(SplitSecondUnit $case)
+    public function testAbbr(SplitSecondUnit $case): void
     {
         $expected = match ($case) {
             SplitSecondUnit::Millisecond => 'ms',
@@ -50,7 +53,7 @@ class SplitSecondUnitTest extends TestCase
     }
 
     /** @dataProvider splitSecondEnumProvider */
-    public function testDecimalPrecision(SplitSecondUnit $case)
+    public function testDecimalPrecision(SplitSecondUnit $case): void
     {
         $expected = match ($case) {
             SplitSecondUnit::Millisecond => 3,
