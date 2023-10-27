@@ -48,7 +48,9 @@ class SplitSecond
         $microseconds = $this->toMicroseconds()->splitSeconds;
 
         if ($microseconds === (int) $dateTime->format('u')) {
-            return $dateTime instanceof DateTimeImmutable ? $dateTime : DateTimeImmutable::createFromInterface($dateTime);
+            return $dateTime instanceof DateTimeImmutable
+                ? $dateTime
+                : DateTimeImmutable::createFromInterface($dateTime);
         }
 
         $result = DateTimeImmutable::createFromInterface($dateTime);
