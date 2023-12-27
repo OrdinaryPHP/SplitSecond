@@ -12,6 +12,6 @@ jobs:
     strategy:
       matrix:
         php-version: [ "8.2", "8.3" ]
-    uses: ordinaryphp/workflows/.github/workflows/lib-testing-and-quality.yaml@dev
+    uses: ordinaryphp/code-quality@dev
     with:
       phpVersion: ${{ matrix.php-version }}
