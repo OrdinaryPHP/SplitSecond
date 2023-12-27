@@ -14,6 +14,7 @@ jobs:
       matrix:
         php-version: [ "8.2", "8.3" ]
     steps:
+      - uses: actions/checkout@main
       - uses: ordinaryphp/code-quality@dev
         with:
-          phpVersion: ${{ matrix.php-version }}
+          php_version: ${{ matrix.php-version }}
