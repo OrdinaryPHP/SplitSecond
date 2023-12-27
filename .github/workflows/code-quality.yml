@@ -9,12 +9,9 @@ permissions:
   packages: read
 jobs:
   code-quality:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         php-version: [ "8.2", "8.3" ]
-    steps:
-      - uses: actions/checkout@main
-      - uses: ordinaryphp/code-quality@dev
-        with:
-          php_version: ${{ matrix.php-version }}
+    uses: ordinaryphp/workflows/.github/workflows/lib-testing-and-quality.yaml@dev
+    with:
+      phpVersion: ${{ matrix.php-version }}
