@@ -9,9 +9,11 @@ permissions:
   packages: read
 jobs:
   code-quality:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         php-version: [ "8.2", "8.3" ]
-    uses: ordinaryphp/code-quality@dev
-    with:
-      phpVersion: ${{ matrix.php-version }}
+    steps:
+      - uses: ordinaryphp/code-quality@dev
+        with:
+          phpVersion: ${{ matrix.php-version }}
