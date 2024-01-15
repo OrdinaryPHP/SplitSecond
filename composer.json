@@ -22,7 +22,7 @@
     "php": "^8.2"
   },
   "require-dev": {
-    "ordinary/code-quality": "dev-dev",
+    "ordinary/code-quality": "dev-main",
     "roave/security-advisories": "@dev"
   },
   "config": {
