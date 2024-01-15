@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: ordinaryphp/code-quality-action@initial
+      - uses: ordinaryphp/code-quality-action@0.1.0
         with:
-          version: branch-add-entrypoint
+          version: 0.2.0
           phpVersion: ${{ matrix.php-version }}
