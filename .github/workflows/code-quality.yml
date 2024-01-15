@@ -12,6 +12,10 @@ jobs:
     strategy:
       matrix:
         php-version: [ "8.2", "8.3" ]
-    uses: ordinaryphp/workflows/.github/workflows/lib-testing-and-quality.yaml@dev
-    with:
-      phpVersion: ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: ordinaryphp/code-quality-action@initial
+        with:
+          version: branch-add-entrypoint
+          phpVersion: ${{ matrix.php-version }}
